@@ -1,0 +1,21 @@
+version: '2'
+services:
+  db:
+    image: postgres
+  app:
+    build: .
+    command: bundle exec unicorn_rails -c config/unicorn.rb -E production
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+  web:
+    image: nginx:stable
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "8080:80"
+    volumes_from:
+      - app
+    depends_on:
+      - app
