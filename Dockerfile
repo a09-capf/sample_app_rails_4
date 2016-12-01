@@ -1,11 +1,9 @@
-FROM ruby:2.0.0
+FROM ruby:2.2.6-alpine
 ADD . /app
 WORKDIR /app
 ENV RAILS_ENV=production
-ENV PORT=3000
-RUN apt-get update -qq && \
-  apt-get install -y build-essential libpq-dev nodejs && \
+RUN apk --update --no-cache add make g++ musl-dev libffi-dev linux-headers postgresql-dev nodejs && \
   bundle install --deployment --without development test doc && \
   bundle exec rake assets:precompile
-EXPOSE 3000
+EXPOSE 8080
 VOLUME /app/public
