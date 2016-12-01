@@ -36,4 +36,6 @@ SampleApp::Application.configure do
 
   # Speed up tests by lowering bcrypt's cost function.
   ActiveModel::SecurePassword.min_cost = true
+
+  config.session_store :cookie_store, key: '_sample_app_session'
 end

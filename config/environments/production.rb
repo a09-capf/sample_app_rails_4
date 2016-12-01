@@ -76,4 +76,6 @@ SampleApp::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  config.session_store :redis_store, servers: 'redis://cache:6379/0', expire_in: 1.day
 end

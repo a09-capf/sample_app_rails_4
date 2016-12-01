@@ -24,4 +24,6 @@ SampleApp::Application.configure do
 
   # Debug mode disables concatenation and preprocessing of assets.
   config.assets.debug = true
+
+  config.session_store :cookie_store, key: '_sample_app_session'
 end

@@ -53,4 +53,5 @@ end
 group :production do
   gem 'pg', '0.15.1'
   gem 'unicorn'
+  gem 'redis-rails'
 end
